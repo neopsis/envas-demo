@@ -1,11 +1,15 @@
 ## Envas Demo
 
-### Part 1 - Hello World (1.7.2020)
+You can find the step by step introduction to the Envas Framework 
+in the series of blogs at [Neopsis Web Site](http://www.neopsis.com/blog).
 
-* Hello World application
-* Basic servlet configuratopn
+### Part 2 - Hello World (1.7.2020)
 
-### Part 2 - Data Binding
+`Helo World` demo is located in the package
+ `com.neopsis.envas.demo.helloworld`. It contains 
+ two Java classes 
 
-### Part 3 - HxViews
+* `BHelloWorldApp` - Baja Hello World application
+* `HelloWorldApp`  - Envas Hello World code
+
  
