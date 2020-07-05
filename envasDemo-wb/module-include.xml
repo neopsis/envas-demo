@@ -1,0 +1,25 @@
+<!-- Types -->
+<types>
+  <!--com.neopsis.envas.demo.app.helloworld-->
+  <!---->
+  <type class="BHelloWorldApp" name="HelloWorldApp"/>
+  <!--com.neopsis.envas.demo.helloworld-->
+  <type class="com.neopsis.envas.demo.helloworld.BHelloWorldApp" name="HelloWorldApp"/>
+  <!--com.neopsis.envas.demo.hxview-->
+  <type class="com.neopsis.envas.demo.hxview.BHxTestPointView" name="HxTestPointView">
+    <agent>
+      <on type="envasDemo:WbTestPointView"/>
+    </agent>
+  </type>
+  <type class="com.neopsis.envas.demo.hxview.BNvHxTestPointView" name="NvHxTestPointView">
+    <agent>
+      <on type="envasDemo:WbTestPointView"/>
+    </agent>
+  </type>
+  <type class="com.neopsis.envas.demo.hxview.BNvTestPoint" name="NvTestPoint"/>
+  <type class="com.neopsis.envas.demo.hxview.BWbTestPointView" name="WbTestPointView">
+    <agent>
+      <on type="envasDemo:NvTestPoint"/>
+    </agent>
+  </type>
+</types>

@@ -1,0 +1,47 @@
+/* Module Build File */
+
+description = "Envas demo module"
+
+ext {
+}
+
+niagaraModule {
+    preferredSymbol = "neo"
+    moduleName      = "envasDemo"
+    runtimeProfile  = "wb"
+}
+
+dependencies {
+    compile "Tridium:nre:4.7"
+    compile "Tridium:baja:4.7"
+    compile "Tridium:bajaui-wb:4.7"
+    compile "Tridium:control-rt:4.7"
+    compile "Tridium:gx-rt:4.7"
+    compile "Tridium:hx-wb:4.7"
+    compile "Tridium:web-rt:4.7"
+    compile "Tridium:workbench-wb:4.7"
+    compile "Neopsis:envas-wb:0.9.7"
+    compile "Neopsis:envasCommons-rt:4.0.0"
+}
+
+compileJava {
+    options.compilerArgs = ["-profile", "compact3"]
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+}
+
+jar {
+
+    from('src/main/resources') {
+        include '*.**'
+    }
+}
+
+    
+    

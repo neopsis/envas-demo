@@ -1,0 +1,7 @@
+/*
+ * Copyright 2020 Neopsis, All Rights Reserved.
+ */
+
+/* Vendor Configuration File */
+group   = "Neopsis"
+version = "4.7.0"

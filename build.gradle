@@ -1,0 +1,30 @@
+/*
+  Copyright 2020 Neopsis, All Rights Reserved.
+ */
+
+plugins {
+    id 'com.tridium.niagara-signing'
+    id 'com.tridium.niagara' apply false
+    id 'com.tridium.niagara-module' apply false
+    id 'com.tridium.niagara-rjs' apply false
+}
+
+ext.niagara_home      = gradle.getProperty('niagara_home')
+ext.niagara_user_home = gradle.getProperty('niagara_user_home')
+ext.niagara_dev_home  = gradle.getProperty('niagara_dev_home')
+
+gradle.beforeProject { p ->
+    configure(p) {
+        apply from: "${rootDir}/vendor.gradle"
+        apply from: "${rootDir}/gradle/niagara.gradle"
+    }
+}
+
+subprojects { Project p ->
+  p.pluginManager.withPlugin('com.tridium.niagara-module') {
+      p.niagaraModule {
+          // setup your certification alias here
+          certAlias = "neopsis-code-sign"
+      }
+  }
+}
