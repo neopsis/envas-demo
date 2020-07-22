@@ -22,4 +22,6 @@
       <on type="envasDemo:NvTestPoint"/>
     </agent>
   </type>
+  <!--com.neopsis.envas.demo-->
+  <type class="com.neopsis.envas.demo.BEnvasDemo" name="EnvasDemo"/>
 </types>

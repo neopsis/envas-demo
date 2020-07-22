@@ -3,13 +3,27 @@
 description = "Envas demo module"
 
 ext {
+  vaadinVersion     = '7.7.17'
+    widgetset = 'com.neopsis.envas.demo.widgets.DefaultWidgetset'
 }
+
 
 niagaraModule {
     preferredSymbol = "neo"
     moduleName      = "envasDemo"
     runtimeProfile  = "wb"
 }
+
+/**
+ * Custom configurations
+ */
+configurations {
+    provided {
+        description  'Compile time libraries'
+    }
+}
+
+
 
 dependencies {
     compile "Tridium:nre:4.7"
@@ -19,9 +33,72 @@ dependencies {
     compile "Tridium:gx-rt:4.7"
     compile "Tridium:hx-wb:4.7"
     compile "Tridium:web-rt:4.7"
+    compile "Tridium:wbutil-wb:4.7"
     compile "Tridium:workbench-wb:4.7"
     compile "Neopsis:envas-wb:0.9.7"
     compile "Neopsis:envasCommons-rt:4.0.0"
+
+    provided ("com.vaadin:vaadin-client-compiler:$vaadinVersion") {
+        exclude group: 'org.eclipse.jetty'
+    }
+}
+
+// *******************************************************
+//       Compile DefaultWidgetset
+// *******************************************************
+task compileWidgetset(dependsOn: classes, type: JavaExec) {
+
+    group 'envas'
+    description = 'Compile Envas widgetset'
+
+    ext.wsBuildDir = "src/main/resources//VAADIN/widgetsets"
+    ext.wsCacheDir = "src/main/resources//VAADIN/gwt-unitCache"
+    ext.wsExtraDir = "${project.buildDir}/tmp/widgetset"
+    ext.wsWebInfDir = "${project.buildDir}/WEB-INF"
+    inputs.file sourceSets.main.java.srcDirs
+    inputs.dir sourceSets.main.output.resourcesDir
+    outputs.dir ext.wsBuildDir
+
+    doFirst {
+        println '--------------------------------------------'
+        println '           Building Widgetset               '
+        println '--------------------------------------------'
+
+        delete fileTree('src/main/resources/VAADIN/widgetsets') {
+            //
+        }
+    }
+
+    main = 'com.google.gwt.dev.Compiler'
+
+    classpath {
+        [
+                sourceSets.main.java.srcDirs,           // Java source
+                sourceSets.main.output.resourcesDir,    // Generated resources
+                sourceSets.main.output.classesDir,      // Generated classes
+                sourceSets.main.compileClasspath,       // Deps
+        ]
+    }
+
+    args =
+            [
+                    widgetset,
+                    '-war', ext.wsBuildDir,
+                    '-logLevel', 'WARN',
+                    '-localWorkers', '4',
+                    '-extra', ext.wsExtraDir,
+                    '-failOnError',
+                    '-strict'
+            ]
+
+    maxHeapSize = '2048M'
+
+    jvmArgs = ['-Xss64M', '-Xms512M', '-Djava.awt.headless=true']
+
+    doLast {
+        ant.delete(dir: 'src/main/resources/VAADIN/widgetsets/WEB-INF')
+        ant.delete(dir: ext.wsCacheDir)
+    }
 }
 
 compileJava {
