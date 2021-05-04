@@ -1,14 +1,11 @@
 /*
  * Copyright 2019 Neopsis, All Rights Reserved.
+ *
+ * Environment Configuration File
  */
 
+gradle.ext.envDir  = "C:\\Niagara\\Development"
+gradle.ext.envFile = "${gradle.ext.envDir}\\environment.gradle"
+apply from: "${gradle.ext.envFile}"
 
-// Change niagara_home and niagara_user_home as needed
-
-gradle.ext {
-    niagara_version      = "4.7"
-    niagara_release      = "4.7.109.20"
-    niagara_home         = "C:/Niagara/Niagara-${niagara_release}"
-    niagara_user_home    = "C:/Users/robert/Niagara${niagara_version}/tridium"
-    niagara_dev_home     = "C:/Users/robert/Niagara${niagara_version}/tridium"
-}
+gradle.ext.target="D"

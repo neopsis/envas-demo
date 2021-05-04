@@ -12,11 +12,13 @@ package com.neopsis.envas.demo;
 
 import com.neopsis.envas.NvDesktopUI;
 import com.neopsis.envas.demo.views.binding.NvBindingView;
+import com.neopsis.envas.demo.views.charts.NvChartView;
 import com.neopsis.envas.demo.views.dashboard.NvDashboardView;
 import com.neopsis.envas.demo.views.elements.NvElementsView;
 import com.neopsis.envas.demo.views.fieldeditors.NvFieldEditorsView;
 import com.neopsis.envas.demo.views.javascript.NvJavaScriptView;
 import com.neopsis.envas.demo.views.widget.NvWidgetsView;
+
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.navigator.Navigator;
@@ -44,6 +46,7 @@ public class NvDemo extends NvDesktopUI implements Button.ClickListener {
     public static final String BINDING_VIEW       = "binding";
     public static final String WIDGETS_VIEW       = "widgets";
     public static final String JAVASCRIPT_VIEW    = "javascript";
+    public static final String CHART_VIEW         = "chart";
     private static final long  serialVersionUID   = 1L;
     private Navigator          navigator;
     private Button             elements;
@@ -52,6 +55,7 @@ public class NvDemo extends NvDesktopUI implements Button.ClickListener {
     private Button             binding;
     private Button             widgets;
     private Button             javascript;
+    private Button             chart;
 
     @Override
     public void init(VaadinRequest request) {
@@ -73,6 +77,7 @@ public class NvDemo extends NvDesktopUI implements Button.ClickListener {
         rootLayout.setExpandRatio(panel, 1);
         rootLayout.setSizeFull();
         setContent(rootLayout);
+        setTheme("enwid");
 
         // navigate to Dashboard
         navigateToDefaultView();
@@ -93,6 +98,7 @@ public class NvDemo extends NvDesktopUI implements Button.ClickListener {
         navigator.addView(BINDING_VIEW, NvBindingView.class);
         navigator.addView(WIDGETS_VIEW, NvWidgetsView.class);
         navigator.addView(JAVASCRIPT_VIEW, NvJavaScriptView.class);
+        navigator.addView(CHART_VIEW, NvChartView.class);
     }
 
     private void createNavigator(Panel panel) {
@@ -112,18 +118,21 @@ public class NvDemo extends NvDesktopUI implements Button.ClickListener {
         binding      = new Button("Binding", this);
         widgets      = new Button("Widgets", this);
         javascript   = new Button("JavaScript", this);
+        chart        = new Button("Chart", this);
         elements.setWidth("120px");
         dashboard.setWidth("120px");
         fieldEditors.setWidth("120px");
         binding.setWidth("120px");
         widgets.setWidth("120px");
         javascript.setWidth("120px");
+        chart.setWidth("120px");
         sideNavigation.addComponent(dashboard);
         sideNavigation.addComponent(elements);
         sideNavigation.addComponent(fieldEditors);
         sideNavigation.addComponent(binding);
         sideNavigation.addComponent(widgets);
         sideNavigation.addComponent(javascript);
+        sideNavigation.addComponent(chart);
         rootLayout.addComponent(sideNavigation);
     }
 
@@ -142,6 +151,8 @@ public class NvDemo extends NvDesktopUI implements Button.ClickListener {
             navigator.navigateTo(WIDGETS_VIEW);
         } else if (javascript.equals(event.getButton())) {
             navigator.navigateTo(JAVASCRIPT_VIEW);
+        } else if (chart.equals(event.getButton())) {
+            navigator.navigateTo(CHART_VIEW);
         }
     }
 }

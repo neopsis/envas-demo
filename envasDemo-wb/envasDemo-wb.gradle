@@ -12,6 +12,7 @@ niagaraModule {
     preferredSymbol = "neo"
     moduleName      = "envasDemo"
     runtimeProfile  = "wb"
+    certAlias       = "neopsis-code-sign"
 }
 
 /**
@@ -23,20 +24,26 @@ configurations {
     }
 }
 
-
-
 dependencies {
     compile "Tridium:nre:4.7"
     compile "Tridium:baja:4.7"
+    compile "Tridium:alarm-rt:4.7"
+    compile "Tridium:alarm-wb:4.7"
     compile "Tridium:bajaui-wb:4.7"
+    compile "Tridium:bql-rt:4.7"
+    compile "Tridium:converters-rt:4.7"
     compile "Tridium:control-rt:4.7"
     compile "Tridium:gx-rt:4.7"
+    compile "Tridium:history-rt:4.7"
     compile "Tridium:hx-wb:4.7"
+    compile "Tridium:kitPx-wb:4.7"
     compile "Tridium:web-rt:4.7"
     compile "Tridium:wbutil-wb:4.7"
     compile "Tridium:workbench-wb:4.7"
-    compile "Neopsis:envas-wb:0.9.7"
-    compile "Neopsis:envasCommons-rt:4.0.0"
+    compile "Neopsis:envas-ux:0.9.10"
+    compile "Neopsis:envas-wb:0.9.10"
+    compile "Neopsis:envasAmCharts-wb:3.21.0"
+    compile "Neopsis:envasCommons-rt:4.0.3"
 
     provided ("com.vaadin:vaadin-client-compiler:$vaadinVersion") {
         exclude group: 'org.eclipse.jetty'
@@ -118,7 +125,18 @@ jar {
     from('src/main/resources') {
         include '*.**'
     }
+
+    if ( gradle.ext.target == "P") {
+        exclude 'hotswap-agent.properties'
+        exclude 'rebel.xml'
+    }
+
+    doLast {
+
+        copy {
+            from(project.buildDir.toString() + '/libs')
+            into { file("${gradle.ext.niagara_modules}") }
+        }
+    }
 }
 
-    
-    

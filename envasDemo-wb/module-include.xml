@@ -5,23 +5,45 @@
   <type class="BHelloWorldApp" name="HelloWorldApp"/>
   <!--com.neopsis.envas.demo.helloworld-->
   <type class="com.neopsis.envas.demo.helloworld.BHelloWorldApp" name="HelloWorldApp"/>
-  <!--com.neopsis.envas.demo.hxview-->
-  <type class="com.neopsis.envas.demo.hxview.BHxTestPointView" name="HxTestPointView">
+  <!--com.neopsis.envas.demo.component-->
+  <type class="com.neopsis.envas.demo.component.BAnalogSensor" name="AnalogSensor"/>
+  <!--com.neopsis.envas.demo.component.converter-->
+  <type class="com.neopsis.envas.demo.component.converter.BAnalogSensorToImage" name="AnalogSensorToImage"/>
+  <!--com.neopsis.envas.demo.component.enums-->
+  <type class="com.neopsis.envas.demo.component.enums.BImageSize" name="ImageSize"/>
+  <!--com.neopsis.envas.demo.component.hxview-->
+  <type class="com.neopsis.envas.demo.component.hxview.BHxEnvasPointView" name="HxEnvasPointView">
     <agent>
-      <on type="envasDemo:WbTestPointView"/>
+      <on type="envasDemo:WbAnalogSensorViewX"/>
     </agent>
   </type>
-  <type class="com.neopsis.envas.demo.hxview.BNvHxTestPointView" name="NvHxTestPointView">
+  <!--com.neopsis.envas.demo.component.uxview-->
+  <type class="com.neopsis.envas.demo.component.hxview.BHxNiagaraPointView" name="HxNiagaraPointView">
     <agent>
-      <on type="envasDemo:WbTestPointView"/>
+      <on type="envasDemo:WbPointView"/>
     </agent>
   </type>
-  <type class="com.neopsis.envas.demo.hxview.BNvTestPoint" name="NvTestPoint"/>
-  <type class="com.neopsis.envas.demo.hxview.BWbTestPointView" name="WbTestPointView">
+  <!--com.neopsis.envas.demo.component.popup-->
+  <type class="com.neopsis.envas.demo.component.popup.BPopupWidget" name="PopupWidget">
     <agent>
-      <on type="envasDemo:NvTestPoint"/>
+      <on type="envasDemo:AnalogSensor"/>
+    </agent>
+  </type>
+  <type class="com.neopsis.envas.demo.component.popup.BNvAnalogSensorPopupView" name="NvAnalogSensorPopupView">
+    <agent>
+      <on type="envasDemo:AnalogSensor"/>
+    </agent>
+  </type>
+  <!--com.neopsis.envas.demo.component.wbview-->
+  <type class="com.neopsis.envas.demo.component.wbview.BComponentPicture" name="ComponentPicture"/>
+  <type class="com.neopsis.envas.demo.component.wbview.BWbAnalogSensorView" name="WbAnalogSensorView">
+    <agent>
+      <on type="envasDemo:AnalogSensor"/>
     </agent>
   </type>
   <!--com.neopsis.envas.demo-->
   <type class="com.neopsis.envas.demo.BEnvasDemo" name="EnvasDemo"/>
+  <!--com.neopsis.envas.demo.component.chart-->
+  <type class="com.neopsis.envas.demo.component.chart.BChartInfo" name="ChartInfo"/>
+  <type class="com.neopsis.envas.demo.component.chart.BChartTypeEnum" name="ChartTypeEnum"/>
 </types>

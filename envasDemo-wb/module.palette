@@ -5,6 +5,6 @@
                  reversibleEncodingValidator="[null.1]=" >
 
    <p m="b=baja" t="b:Folder">
-         <p n="TestPoint"          m="env=envasDemo"   t="env:NvTestPoint" />
+         <p n="AnalogSensor"      m="env=envasDemo"   t="env:AnalogSensor" />
    </p>
 </bajaObjectGraph>
