@@ -26,7 +26,7 @@ public class BEnvasDemo extends BNvApplication {
 
     /*+ ------------ BEGIN BAJA AUTO GENERATED CODE ------------ +*/
     /*@ $com.neopsis.envas.demo.BEnvasDemo(2979906276)1.0$ @*/
-    /* Generated Mon Jul 06 14:38:09 CEST 2020 by Slot-o-Matic (c) Tridium, Inc. 2012 */
+    /* Generated Wed May 12 00:48:10 CEST 2021 by Slot-o-Matic (c) Tridium, Inc. 2012 */
 
     ////////////////////////////////////////////////////////////////
     // Type

@@ -3,13 +3,13 @@
 description = "Envas demo module"
 
 ext {
-  vaadinVersion     = '7.7.17'
+    vaadinVersion     = '7.7.17'
     widgetset = 'com.neopsis.envas.demo.widgets.DefaultWidgetset'
 }
 
 
 niagaraModule {
-    preferredSymbol = "neo"
+    preferredSymbol = "nvdemo"
     moduleName      = "envasDemo"
     runtimeProfile  = "wb"
     certAlias       = "neopsis-code-sign"
@@ -40,9 +40,8 @@ dependencies {
     compile "Tridium:web-rt:4.7"
     compile "Tridium:wbutil-wb:4.7"
     compile "Tridium:workbench-wb:4.7"
-    compile "Neopsis:envas-ux:0.9.10"
-    compile "Neopsis:envas-wb:0.9.10"
-    compile "Neopsis:envasAmCharts-wb:3.21.0"
+    compile "Neopsis:envas-wb:0.9.20"
+    compile "Neopsis:envasAmCharts-wb:3.21.20"
     compile "Neopsis:envasCommons-rt:4.0.3"
 
     provided ("com.vaadin:vaadin-client-compiler:$vaadinVersion") {
@@ -112,6 +111,16 @@ compileJava {
     options.compilerArgs = ["-profile", "compact3"]
 }
 
+// *******************************************************
+//               Clean module
+// *******************************************************
+clean {
+
+    delete = []
+    delete 'build', 'out'
+
+}
+
 sourceSets {
     main {
         java {
@@ -127,8 +136,7 @@ jar {
     }
 
     if ( gradle.ext.target == "P") {
-        exclude 'hotswap-agent.properties'
-        exclude 'rebel.xml'
+       exclude 'hotswap-agent.properties'
     }
 
     doLast {

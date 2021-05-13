@@ -11,9 +11,9 @@
 package com.neopsis.envas.demo.views.charts;
 
 import com.neopsis.envas.amcharts.NvAmChart;
-import com.neopsis.envas.amcharts.enums.BNvChartTypeEnum;
-import com.neopsis.envas.amcharts.providers.history.BNvHistoryChartInfo;
-import com.neopsis.envas.amcharts.providers.history.NvHistoryAmChartConfigProvider;
+import com.neopsis.envas.amcharts.providers.history.NvAmChartHistoryConfigProvider;
+import com.neopsis.envas.charts.enums.BNvChartTypeEnum;
+import com.neopsis.envas.charts.utils.BNvHistoryChartInfo;
 import com.neopsis.envas.demo.views.NvView;
 import com.tridium.bql.util.BDynamicTimeRange;
 import com.tridium.bql.util.BDynamicTimeRangeType;
@@ -31,7 +31,7 @@ import java.util.ArrayList;
  */
 public class NvChartView extends NvView {
 
-    NvHistoryAmChartConfigProvider provider;
+    NvAmChartHistoryConfigProvider provider;
 
     public NvChartView() {
         addComponent(getHistoryChartLayout());
@@ -43,15 +43,12 @@ public class NvChartView extends NvView {
 
         // demo - hard coded
         BOrd                historyOrd = BOrd.make("history:/EnvasDemo/demoHistory");
-        BNvHistoryChartInfo info       = new BNvHistoryChartInfo();
 
-        info.setOrd(historyOrd);
-        info.setChartType(BNvChartTypeEnum.line);
-
+        BNvHistoryChartInfo info = BNvHistoryChartInfo.make(historyOrd, BNvChartTypeEnum.line);
         ArrayList<BNvHistoryChartInfo> infos = new ArrayList<>();
 
         infos.add(info);
-        provider = new NvHistoryAmChartConfigProvider(infos, BDynamicTimeRange.make(BDynamicTimeRangeType.today));
+        provider = new NvAmChartHistoryConfigProvider(infos, BDynamicTimeRange.make(BDynamicTimeRangeType.today));
 
         NvAmChart chart = new NvAmChart(provider);
 
@@ -60,7 +57,7 @@ public class NvChartView extends NvView {
 
         Button refreshButton = new Button("Refresh");
 
-        refreshButton.addClickListener( e -> provider.refreshChart());
+        refreshButton.addClickListener(e -> provider.refreshChart());
         layout.addComponent(chart);
         layout.addComponent(refreshButton);
         layout.setMargin(true);

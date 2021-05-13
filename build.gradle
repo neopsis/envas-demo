@@ -44,11 +44,11 @@ task buildZip(type: Zip) {
 
     apply from: file("${rootDir}/vendor.gradle")
 
-    def version      = rootProject.version
-    def envasVersion = '0.9.13'
+    def version        = rootProject.version
+    def envasVersion   = '0.9.20'
     def commonsVersion = '4.0.3'
-    def chartsVersion = '3.21.11.0'
-    def outputFile   = file("${gradle.ext.niagara_modules}/release.txt")
+    def chartsVersion  = '3.21.20'
+    def outputFile     = file("${gradle.ext.niagara_modules}/release.txt")
 
     outputs.file outputFile
     outputFile.write  baseName + ": " + version + "\n"

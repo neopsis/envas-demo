@@ -10,8 +10,9 @@
 
 package com.neopsis.envas.demo.component;
 
-import com.neopsis.envas.amcharts.enums.BNvChartTypeEnum;
-import com.neopsis.envas.amcharts.providers.history.BNvHistoryChartInfo;
+import com.neopsis.envas.charts.enums.BNvChartTypeEnum;
+import com.neopsis.envas.charts.utils.BNvHistoryChartInfo;
+
 import com.tridium.history.db.BLocalDbHistory;
 
 import javax.baja.alarm.ext.BAlarmSourceExt;
@@ -25,6 +26,7 @@ import javax.baja.history.BNumericTrendRecord;
 import javax.baja.history.db.HistoryDatabaseConnection;
 import javax.baja.history.ext.BHistoryExt;
 import javax.baja.history.ext.BNumericIntervalHistoryExt;
+import javax.baja.naming.BOrd;
 import javax.baja.nre.annotations.NiagaraProperty;
 import javax.baja.nre.annotations.NiagaraType;
 import javax.baja.sys.Flags;
@@ -32,6 +34,7 @@ import javax.baja.sys.Property;
 import javax.baja.sys.Sys;
 import javax.baja.sys.Type;
 import javax.baja.util.BTypeSpec;
+
 import java.util.ArrayList;
 
 /**
@@ -187,7 +190,7 @@ public class BAnalogSensor extends BNumericWritable {
     public ArrayList<BNvHistoryChartInfo> getChartInfos() {
 
         ArrayList<BNvHistoryChartInfo> chartInfos = new ArrayList<>();
-        BHistoryExt[]         extensions = getChildren(BHistoryExt.class);
+        BHistoryExt[]                  extensions = getChildren(BHistoryExt.class);
 
         for (int j = 0; j < extensions.length; j++) {
 
@@ -202,17 +205,18 @@ public class BAnalogSensor extends BNumericWritable {
 
                     if (hist != null) {
 
-                        BHistoryConfig conf      = hist.getConfig();
-                        BTypeSpec      typeSpec  = conf.getRecordType();
-                        BNvHistoryChartInfo     chartInfo = new BNvHistoryChartInfo();
-
-                        chartInfo.setOrd(hist.getOrdInSpace());
+                        BHistoryConfig   conf     = hist.getConfig();
+                        BTypeSpec        typeSpec = conf.getRecordType();
+                        BOrd             ord      = hist.getOrdInSpace();
+                        BNvChartTypeEnum type;
 
                         if (typeSpec.equals(BNumericTrendRecord.TYPE.getTypeSpec())) {
-                            chartInfo.setChartType(BNvChartTypeEnum.line);
+                            type = BNvChartTypeEnum.line;
                         } else {
-                            chartInfo.setChartType(BNvChartTypeEnum.bar);
+                            type = BNvChartTypeEnum.bar;
                         }
+
+                        BNvHistoryChartInfo chartInfo = BNvHistoryChartInfo.make(ord, type);
 
                         chartInfos.add(chartInfo);
                     }

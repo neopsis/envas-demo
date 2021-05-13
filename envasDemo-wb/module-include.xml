@@ -43,7 +43,4 @@
   </type>
   <!--com.neopsis.envas.demo-->
   <type class="com.neopsis.envas.demo.BEnvasDemo" name="EnvasDemo"/>
-  <!--com.neopsis.envas.demo.component.chart-->
-  <type class="com.neopsis.envas.demo.component.chart.BChartInfo" name="ChartInfo"/>
-  <type class="com.neopsis.envas.demo.component.chart.BChartTypeEnum" name="ChartTypeEnum"/>
 </types>

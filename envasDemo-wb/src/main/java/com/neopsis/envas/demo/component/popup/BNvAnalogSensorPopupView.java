@@ -13,13 +13,13 @@ package com.neopsis.envas.demo.component.popup;
 import com.neopsis.envas.NvBinding;
 import com.neopsis.envas.NvIComponentEventListener;
 import com.neopsis.envas.NvUI;
+import com.neopsis.envas.amcharts.widgets.history.NvHistoryWidget;
 import com.neopsis.envas.demo.component.BAnalogSensor;
-import com.neopsis.envas.demo.component.chart.ChartWidget;
 import com.neopsis.envas.ui.widget.BINvWidget;
 import com.neopsis.envas.ui.widget.NvWidgetProperties;
-
 import com.vaadin.server.Page;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
@@ -57,14 +57,23 @@ public class BNvAnalogSensorPopupView extends BComponent implements BINvWidget, 
     @Override
     public Component createWidgetContent(NvUI nvUI, NvWidgetProperties nvWidgetProperties) throws Exception {
 
-        VerticalLayout layout = new VerticalLayout();
+        VerticalLayout   layout        = new VerticalLayout();
+        HorizontalLayout valueLayout   = new HorizontalLayout();
+        Component        chartLayout;
 
         ui     = nvUI;
         sensor = (BAnalogSensor) nvWidgetProperties.getOrd().resolve().get();
-
-        ChartWidget chartLayout = new ChartWidget(sensor);
-
+        lblName.setValue(sensor.getDisplayName(null));
+        lblValue.setValue(sensor.getOutStatusValue().valueToString(null));
+        valueLayout.addComponent(lblName);
+        valueLayout.addComponent(lblValue);
+        valueLayout.setSpacing(true);
+        valueLayout.setMargin(true);
+        valueLayout.setWidth("100%");
+        chartLayout = new NvHistoryWidget(sensor);
+        layout.addComponent(valueLayout);
         layout.addComponent(chartLayout);
+        layout.setExpandRatio(chartLayout, 100.0f);
         layout.setSizeFull();
 
         return layout;

@@ -8,4 +8,4 @@ gradle.ext.envDir  = "C:\\Niagara\\Development"
 gradle.ext.envFile = "${gradle.ext.envDir}\\environment.gradle"
 apply from: "${gradle.ext.envFile}"
 
-gradle.ext.target="D"
+gradle.ext.target="P"
